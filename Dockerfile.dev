@@ -1,0 +1,19 @@
+FROM node:alpine
+
+WORKDIR /app
+
+COPY package.json .
+RUN npm install
+
+COPY . .
+
+# To get dev server working properly, first bookmark container's node_modules
+# -v /app/node_modules
+
+# ... then map the local source to the container source
+# -v $(pwd):/app
+
+# Full command
+# docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app <image-id>
+
+CMD ["npm", "run", "start"]
