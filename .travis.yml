@@ -7,3 +7,13 @@ before_install:
 
 script:
   - docker run -e CI=true mvasigh/docker-react npm run test -- --coverage
+
+deploy: 
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "docker-react-course"
+  env: "DockerReactCourse-env"
+  bucket_name: "elasticbeanstalk-us-east-2-147115627535"
+  bucket_path: "docker-react-course"
+  on:
+    branch: master
